@@ -56,3 +56,12 @@ resource "yandex_vpc_subnet" "b537-subnet1" {
 	zone       = "ru-central1-a"
 	network_id = "${yandex_vpc_network.b537.id}"
 }
+
+output "internal_ip_address_vm-1" {
+	value = yandex_compute_instance.b537-vm.network_interface.0.ip_address
+}
+
+output "external_ip_address_vm-1" {
+        value = yandex_compute_instance.b537-vm.network_interface.0.nat_ip_address
+}
+
