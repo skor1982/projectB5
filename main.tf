@@ -54,3 +54,43 @@ module "yandex_vm_2" {
   yandex_vm_family        = "lamp"
   yandex_vm_vpc_subnet_id = yandex_vpc_subnet.b5-subnet2.id
 }
+
+
+resource "yandex_lb_target_group" "b5-lb-tg" {
+  name      = "b5-target-group"
+  region_id = "ru-central1-a"
+
+  target {
+    subnet_id = yandex_vpc_subnet.b5-subnet1.id
+    address   = module.yandex_vm_1.vm_internal_ip_address
+  }
+
+  target {
+    subnet_id = yandex_vpc_subnet.b5-subnet2.id
+    address   = module.yandex_vm_2.vm_internal_ip_address
+  }
+}
+
+resource "yandex_lb_network_load_balancer" "b5lb" {
+  name = "b5-network-load-balancer"
+
+  listener {
+    name = "b5-listener"
+    port = 8080
+    external_address_spec {
+      ip_version = "ipv4"
+    }
+  }
+
+  attached_target_group {
+    target_group_id = yandex_lb_target_group.b5-target-group.id
+
+    healthcheck {
+      name = "http"
+      http_options {
+        port = 8080
+        path = "/ping"
+      }
+    }
+  }
+}

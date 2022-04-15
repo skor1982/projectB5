@@ -25,6 +25,8 @@
 
 | Name | Type |
 |------|------|
+| [yandex_lb_network_load_balancer.b5lb](https://registry.terraform.io/providers/yandex-cloud/yandex/0.73.0/docs/resources/lb_network_load_balancer) | resource |
+| [yandex_lb_target_group.b5-lb-tg](https://registry.terraform.io/providers/yandex-cloud/yandex/0.73.0/docs/resources/lb_target_group) | resource |
 | [yandex_vpc_network.b5-network](https://registry.terraform.io/providers/yandex-cloud/yandex/0.73.0/docs/resources/vpc_network) | resource |
 | [yandex_vpc_subnet.b5-subnet1](https://registry.terraform.io/providers/yandex-cloud/yandex/0.73.0/docs/resources/vpc_subnet) | resource |
 | [yandex_vpc_subnet.b5-subnet2](https://registry.terraform.io/providers/yandex-cloud/yandex/0.73.0/docs/resources/vpc_subnet) | resource |
