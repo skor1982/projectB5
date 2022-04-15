@@ -57,3 +57,19 @@ resource "yandex_vpc_subnet" "b537-subnet1" {
   network_id     = yandex_vpc_network.b537.id
   v4_cidr_blocks = ["192.168.30.0/24"]
 }
+
+resource "yandex_iam_service_account" "prjb5-sa" {
+  folder_id = var.folder_id
+  name      = "prjb5-sa"
+}
+
+resource "yandex_resourcemanager_folder_iam_member" "prjb5-sa-editor" {
+  folder_id = var.folder_id
+  role      = "storage.editor"
+  member    = "serviceAccount:${yandex_iam_service_account.prjb5-sa.id}"
+}
+
+resource "yandex_iam_service_account_static_access_key" "prjb5-sa-static-key" {
+  service_account_id = "${yandex_iam_service_account.prjb5-sa.id}"
+  description        = "static access key for projectB5"
+}
