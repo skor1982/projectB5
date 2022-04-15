@@ -85,7 +85,7 @@ resource "yandex_iam_service_account_static_access_key" "prjb5-sa-static-key" {
   description        = "static access key for projectB5"
 }
 
-resource "yandex_storage_bucket" "prjb5-bucket" {
+resource "yandex_storage_bucket" "for_terraform" {
   access_key = yandex_iam_service_account_static_access_key.prjb5-sa-static-key.access_key
   secret_key = yandex_iam_service_account_static_access_key.prjb5-sa-static-key.secret_key
   bucket     = "prjb5-bucket"
