@@ -1,17 +1,17 @@
 output "internal_ip_address_vm-1" {
-  value = yandex_compute_instance.b537-vm.network_interface.0.ip_address
+  value = module.yandex_vm_1.vm_internal_ip_address
 }
 
 output "external_ip_address_vm-1" {
-  value = yandex_compute_instance.b537-vm.network_interface.0.nat_ip_address
+  value = module.yandex_vm_1.vm_external_ip_address
 }
 
-output "access_key" {
-  value     = yandex_iam_service_account_static_access_key.prjb5-sa-static-key.access_key
-  sensitive = true
+output "internal_ip_address_vm-2" {
+  value = module.yandex_vm_2.vm_internal_ip_address
 }
 
-output "secret_key" {
-  value     = yandex_iam_service_account_static_access_key.prjb5-sa-static-key.secret_key
-  sensitive = true
+output "external_ip_address_vm-2" {
+  value = module.yandex_vm_2.vm_external_ip_address
 }
+
+
