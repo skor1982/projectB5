@@ -7,9 +7,9 @@ terraform {
 }
 
 provider "yandex" {
-  token     = ""
-  cloud_id  = ""
-  folder_id = ""
+  token     = var.token
+  cloud_id  = var.cloud_id
+  folder_id = var.folder_id
   zone      = "ru-central1-a"
 }
 
@@ -52,17 +52,8 @@ resource "yandex_vpc_network" "b537" {
 }
 
 resource "yandex_vpc_subnet" "b537-subnet1" {
-  name       = "subnet1"
-  zone       = "ru-central1-a"
-  network_id = yandex_vpc_network.b537.id
+  name           = "subnet1"
+  zone           = "ru-central1-a"
+  network_id     = yandex_vpc_network.b537.id
   v4_cidr_blocks = ["192.168.30.0/24"]
 }
-
-output "internal_ip_address_vm-1" {
-  value = yandex_compute_instance.b537-vm.network_interface.0.ip_address
-}
-
-output "external_ip_address_vm-1" {
-  value = yandex_compute_instance.b537-vm.network_interface.0.nat_ip_address
-}
-
