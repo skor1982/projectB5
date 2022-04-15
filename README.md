@@ -41,8 +41,8 @@
 
 | Name | Description |
 |------|-------------|
-| <a name="output_external_ip_address_vm-1"></a> [external\_ip\_address\_vm-1](#output\_external\_ip\_address\_vm-1) | n/a |
-| <a name="output_external_ip_address_vm-2"></a> [external\_ip\_address\_vm-2](#output\_external\_ip\_address\_vm-2) | n/a |
-| <a name="output_internal_ip_address_vm-1"></a> [internal\_ip\_address\_vm-1](#output\_internal\_ip\_address\_vm-1) | n/a |
-| <a name="output_internal_ip_address_vm-2"></a> [internal\_ip\_address\_vm-2](#output\_internal\_ip\_address\_vm-2) | n/a |
+| <a name="output_external_ip_address_vm-1"></a> [external\_ip\_address\_vm-1](#output\_external\_ip\_address\_vm-1) | Внешний IP адрес 1 виртуальной машины |
+| <a name="output_external_ip_address_vm-2"></a> [external\_ip\_address\_vm-2](#output\_external\_ip\_address\_vm-2) | Внешний IP адрес 2 виртуальной машины |
+| <a name="output_internal_ip_address_vm-1"></a> [internal\_ip\_address\_vm-1](#output\_internal\_ip\_address\_vm-1) | Внутренний IP адрес 1 виртуальной машины |
+| <a name="output_internal_ip_address_vm-2"></a> [internal\_ip\_address\_vm-2](#output\_internal\_ip\_address\_vm-2) | Внутренний IP адрес 2 виртуальной машины |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
