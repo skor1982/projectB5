@@ -1,67 +1,67 @@
 terraform {
-	required_providers {
-		yandex = {
-			source = "yandex-cloud/yandex"
-		}
-	}
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
 }
 
 provider "yandex" {
-	token     = ""
-	cloud_id  = ""
-	folder_id = ""
-	zone      = "ru-central1-a"
+  token     = ""
+  cloud_id  = ""
+  folder_id = ""
+  zone      = "ru-central1-a"
 }
 
 data "yandex_compute_image" "b537_image" {
-	family = "lemp"
+  family = "lemp"
 }
 
 resource "yandex_compute_instance" "b537-vm" {
-	name = "vm-1"
-	
-	resources {
-		cores  = 2
-		memory = 2
-		core_fraction = 20
-	}
+  name = "vm-1"
 
-	boot_disk {
-		initialize_params {
-			image_id = "data.yandex_compute_image.b537_image.id"
-		}
-	}
+  resources {
+    cores         = 2
+    memory        = 2
+    core_fraction = 20
+  }
 
-	network_interface {
-		subnet_id = "$(yandex_vpc_subnet.b537-subnet1.id)"
-		nat       = true
-	}
+  boot_disk {
+    initialize_params {
+      image_id = "data.yandex_compute_image.b537_image.id"
+    }
+  }
 
-	metadata = {
-		ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
-	}
+  network_interface {
+    subnet_id = "$(yandex_vpc_subnet.b537-subnet1.id)"
+    nat       = true
+  }
 
-	scheduling_policy = {
-		preemptible = true
-	}
+  metadata = {
+    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+  }
+
+  scheduling_policy = {
+    preemptible = true
+  }
 
 }
 
 resource "yandex_vpc_network" "b537" {
-	name = "B537_network"
+  name = "B537_network"
 }
 
 resource "yandex_vpc_subnet" "b537-subnet1" {
-	name       = "subnet1"
-	zone       = "ru-central1-a"
-	network_id = "${yandex_vpc_network.b537.id}"
+  name       = "subnet1"
+  zone       = "ru-central1-a"
+  network_id = yandex_vpc_network.b537.id
 }
 
 output "internal_ip_address_vm-1" {
-	value = yandex_compute_instance.b537-vm.network_interface.0.ip_address
+  value = yandex_compute_instance.b537-vm.network_interface.0.ip_address
 }
 
 output "external_ip_address_vm-1" {
-        value = yandex_compute_instance.b537-vm.network_interface.0.nat_ip_address
+  value = yandex_compute_instance.b537-vm.network_interface.0.nat_ip_address
 }
 
