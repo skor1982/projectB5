@@ -41,7 +41,7 @@ resource "yandex_compute_instance" "b537-vm" {
     ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
 
-  scheduling_policy = {
+  scheduling_policy {
     preemptible = true
   }
 
@@ -55,6 +55,7 @@ resource "yandex_vpc_subnet" "b537-subnet1" {
   name       = "subnet1"
   zone       = "ru-central1-a"
   network_id = yandex_vpc_network.b537.id
+  v4_cidr_blocks = ["192.168.30.0/24"]
 }
 
 output "internal_ip_address_vm-1" {

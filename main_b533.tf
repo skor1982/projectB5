@@ -1,5 +1,5 @@
 data "template_file" "ansible_inventory" {
-  template = file("${path.module}/inventory.ini.tpl")
+  template = file("${path.module}/inventory.ini_b533.tpl")
   vars = {
     web_server_name_1 = "foo.example.com"
     web_server_name_2 = "bar.example.com"
