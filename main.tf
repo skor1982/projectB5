@@ -4,17 +4,17 @@ terraform {
       source = "yandex-cloud/yandex"
     }
   }
-  #  backend "s3" {
-  #    endpoint   = "storage.yandexcloud.net"
-  #    bucket     = "prjb5-bucket"
-  #    region     = "ru-central1-a"
-  #    key        = "prjb5/lemp.tfstate"
-  #    access_key = ""
-  #    secret_key = ""
-  #
-  #    skip_region_validation      = true
-  #    skip_credentials_validation = true
-  #  }
+  backend "s3" {
+    endpoint   = "storage.yandexcloud.net"
+    bucket     = "skor1982.sf.bucket"
+    region     = "ru-central1-a"
+    key        = "prjb5/lemp.tfstate"
+    access_key = ""
+    secret_key = ""
+
+    skip_region_validation      = true
+    skip_credentials_validation = true
+  }
 }
 
 provider "yandex" {
@@ -85,9 +85,9 @@ resource "yandex_iam_service_account_static_access_key" "prjb5-sa-static-key" {
   description        = "static access key for projectB5"
 }
 
-resource "yandex_storage_bucket" "for_terraform" {
-  access_key = yandex_iam_service_account_static_access_key.prjb5-sa-static-key.access_key
-  secret_key = yandex_iam_service_account_static_access_key.prjb5-sa-static-key.secret_key
-  bucket     = "prjb5-bucket"
-}
+#resource "yandex_storage_bucket" "for_terraform" {
+#  access_key = yandex_iam_service_account_static_access_key.prjb5-sa-static-key.access_key
+#  secret_key = yandex_iam_service_account_static_access_key.prjb5-sa-static-key.secret_key
+#  bucket     = "prjb5-bucket"
+#}
 
